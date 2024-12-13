@@ -1,73 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text,
-  ActivityIndicator, 
-  ScrollView, 
-  SafeAreaView,
-  Animated,
-  TouchableOpacity,
-  RefreshControl,
-  Platform,
-} from 'react-native';
+import { View, ActivityIndicator, RefreshControl, SectionList, Text } from 'react-native';
 import { Brand } from '../types/types';
 import BrandCard from '../components/BrandCard';
 import { styles } from '../styles/styles';
 
-// Define our HomeScreen component
-const HomeScreen = () => {
-  // State management for our data and loading states
-  const [brands, setBrands] = useState<Brand[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
-  
-  // Create an animated value for handling scroll animations
-  const scrollY = new Animated.Value(0);
-  const diffClamp = Animated.diffClamp(scrollY, 0, 50);
-  
-  // Create a translation animation for the header
-  const translateY = diffClamp.interpolate({
-    inputRange: [0, 50],
-    outputRange: [0, -50],
-  });
+interface Section {
+  title: string;
+  data: Brand[];
+}
 
-  // Function to load brands data from the API
+const HomeScreen = () => {
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
   const loadBrands = async (showLoading = true) => {
     if (showLoading) setLoading(true);
     try {
       const response = await fetch('https://sampleapis.assimilate.be/car/brands', {
         headers: {
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMjQ1MkBhcC5iZSIsImlhdCI6MTczNDA0NDk3NX0.pDvBnYbJNf3lZ0kZPHdzCHuJHS7-K1q39KNiCchS7I0`,
-          'Content-Type': 'application/json'
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMjQ1MkBhcC5iZSIsImlhdCI6MTczNDA0NDk3NX0.pDvBnYbJNf3lZ0kZPHdzCHuJHS7-K1q39KNiCchS7I0`
         }
       });
-      const brandsResponse = await response.json();
-      setBrands(brandsResponse);
+      const data = await response.json();
+      setBrands(data);
     } catch (error) {
-      console.log("HIER IS EEN ERRORAAKL'JS");
+      console.error('Error loading brands:', error);
     }
     if (showLoading) setLoading(false);
     setRefreshing(false);
   };
 
-  // Load brands when component mounts
   useEffect(() => {
     loadBrands();
   }, []);
 
-  // Handle pull-to-refresh functionality
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = () => {
     setRefreshing(true);
     loadBrands(false);
-  }, []);
-
-  // Handle card press events
-  const handleCardPress = (brandId: number) => {
-    console.log('Brand pressed:', brandId);
-    // Navigation logic can be added here
   };
 
-  // Show loading indicator while fetching data
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -76,46 +48,54 @@ const HomeScreen = () => {
     );
   }
 
-  // Main render of the home screen
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      {/* Animated header that hides on scroll */}
-      <Animated.View style={[styles.header, { transform: [{ translateY }] }]}>
-        <Text style={styles.headerTitle}>Car Brands</Text>
-      </Animated.View>
+  const getSections = () => {
+    const groupedBrands = brands.reduce((acc, brand) => {
+      const country = brand.country;
+      if (!acc[country]) {
+        acc[country] = [];
+      }
+      acc[country].push(brand);
+      return acc;
+    }, {} as Record<string, Brand[]>);
 
-      {/* Main scrollable content */}
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: true }
-        )}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor="#007AFF"
-          />
-        }
-      >
-        {/* Brands list container */}
-        <View style={styles.cardsContainer}>
-          {brands.map((brand) => (
-            <TouchableOpacity 
-              key={brand.id}
-              activeOpacity={0.7}
-              onPress={() => handleCardPress(brand.id)}
-              style={styles.cardWrapper}
-            >
-              <BrandCard brand={brand} />
-            </TouchableOpacity>
-          ))}
+    return Object.entries(groupedBrands).map(([country, data]) => ({
+      title: country,
+      data: data
+    }));
+  };
+
+  const renderSectionHeader = ({ section }: { section: Section }) => (
+    <View style={styles.sectionHeader}>
+      <Text style={styles.sectionHeaderText}>{section.title}</Text>
+    </View>
+  );
+
+  const renderFooter = () => (
+    <View style={styles.listFooter}>
+      <Text style={styles.footerText}>{brands.length} brands loaded</Text>
+    </View>
+  );
+
+  return (
+    <SectionList
+      sections={getSections()}
+      renderItem={({ item }) => (
+        <View style={styles.cardWrapper}>
+          <BrandCard brand={item} />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      )}
+      renderSectionHeader={renderSectionHeader}
+      ListFooterComponent={renderFooter}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          tintColor="#007AFF"
+        />
+      }
+      stickySectionHeadersEnabled
+      contentContainerStyle={styles.scrollContent}
+    />
   );
 };
 
