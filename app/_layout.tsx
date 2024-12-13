@@ -1,6 +1,4 @@
 import { Stack } from 'expo-router';
-import { Tabs } from 'expo-router';
-import { FontAwesome } from "@expo/vector-icons";
 import "../global.css";
 import React from 'react';
 
