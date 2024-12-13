@@ -41,10 +41,6 @@ const BrandDetail = () => {
         })
       ]);
 
-      if (!brandResponse.ok || !modelsResponse.ok) {
-        throw new Error('Failed to fetch data');
-      }
-
       const brandData = await brandResponse.json();
       const modelsData = await modelsResponse.json();
 
@@ -52,11 +48,7 @@ const BrandDetail = () => {
       setModels(modelsData);
     } catch (error) {
       console.error('Error loading brand details:', error);
-      Alert.alert(
-        'Error',
-        'Failed to load brand details. Please try again later.',
-        [{ text: 'OK', onPress: () => router.back() }]
-      );
+     
     } finally {
       setLoading(false);
     }

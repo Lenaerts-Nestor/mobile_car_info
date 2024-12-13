@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { styles } from '../styles/styles';
+import { CarModel } from '../types/types';
+import { scheduleNotification } from '../utils/notifications';
 
 interface AddModelModalProps {
   isVisible: boolean;
@@ -45,7 +47,7 @@ const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModal
            !isNaN(Number(formData.seating_capacity));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isFormValid()) {
       Alert.alert('Validation Error', 'Please fill in all fields with valid values');
       return;
@@ -66,36 +68,37 @@ const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModal
       seating_capacity: parseInt(formData.seating_capacity)
     };
 
-    const headers = {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMjQ1MkBhcC5iZSIsImlhdCI6MTczNDEyNTk3MH0.o1WNvyCtDLHsY5V8-HwN1orLGfkG23CO_r6U-a0LZC0`
-      },
-      body: JSON.stringify(modelData)
-    };
-
-    const baseURL = 'https://sampleapis.assimilate.be/car/models/';
-
-    fetch(baseURL, headers)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Model is gecreerd', data);
-        Alert.alert('Success', 'Model created successfully');
-        onSuccess();
-        onClose();
-      })
-      .catch(error => {
-        console.error('Error creating model:', error);
-        Alert.alert('Error', 'Failed to create model. Please try again.');
-      })
-      .finally(() => {
-        setLoading(false);
+    try {
+      const response = await fetch('https://sampleapis.assimilate.be/car/models', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMjQ1MkBhcC5iZSIsImlhdCI6MTczNDA0NDk3NX0.pDvBnYbJNf3lZ0kZPHdzCHuJHS7-K1q39KNiCchS7I0',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(modelData)
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Model created successfully:', data);
+
+      await scheduleNotification(
+        'New Model Added',
+        `${formData.name} has been successfully created.`
+      );
+
+      Alert.alert('Success', 'Model created successfully');
+      onSuccess();
+      onClose();
+    } catch (error) {
+      console.error('Error creating model:', error);
+     
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
