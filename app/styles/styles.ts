@@ -298,4 +298,27 @@ const { width } = Dimensions.get('window');
     color: '#2d3748',
     fontWeight: '500',
   },
+
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    marginTop: 50,
+  },
+  emptyStateText: {
+    fontSize: 18,
+    color: '#718096',
+    textAlign: 'center',
+  },
+  modelHeaderRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  likeButton: {
+    padding: 8,
+  },
+
+  
 });

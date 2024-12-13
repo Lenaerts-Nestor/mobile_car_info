@@ -1,32 +1,18 @@
-import { Stack } from "expo-router";
-import React from "react";
+import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
+import { FontAwesome } from "@expo/vector-icons";
+import "../global.css";
+import React from 'react';
 
 const RootLayout = () => {
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#fff',
-        },
-        headerTintColor: '#1a202c',
-        headerTitleStyle: {
-          fontWeight: '700',
-        },
-        headerShadowVisible: true,
-        animation: 'slide_from_right',
-      }}
-    >
-      <Stack.Screen 
-        name="index" 
-        options={{
-          title: "Car Brands",
-          headerTitleAlign: 'center',
-        }}
-      />
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen 
         name="brand/[id]" 
         options={{
-          headerShown: false, // This removes the header space completely
+          headerShown: false,
+          presentation: 'card',
         }}
       />
     </Stack>

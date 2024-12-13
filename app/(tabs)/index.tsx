@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import HomeScreen from "./view/HomeScreen";
+import HomeScreen from "../view/HomeScreen";
 
 const Index = () => {
   return (
