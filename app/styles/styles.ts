@@ -435,6 +435,15 @@ modelActions: {
   marginTop: 12,
   paddingTop: 12,
   borderTopWidth: 1,
-  borderTopColor: '#FFFFFF', // Adjusted for dark theme
+  borderTopColor: '#FFFFFF',
+},
+
+locationContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+mapIconButton: {
+  marginLeft: 8,
+  padding: 4,
 },
 });

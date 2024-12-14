@@ -17,12 +17,16 @@ import ModelCard from '../components/ModelCard';
 import AddModelModal from '../components/ModelModal';
 import { styles } from '../styles/styles';
 
+import MapModal from '../components/MapModal';
 const BrandDetail = () => {
+  
   const { id } = useLocalSearchParams<{ id: string }>();
   const [brand, setBrand] = useState<Brand | null>(null);
   const [models, setModels] = useState<CarModel[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isMapVisible, setIsMapVisible] = useState(false);
+
   const router = useRouter();
 
   const loadBrandAndModels = async () => {
@@ -120,12 +124,18 @@ const BrandDetail = () => {
               <Text style={styles.infoValue}>{brand.country}</Text>
             </View>
           </View>
-          <View style={styles.infoRow}>
-            <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>Headquarters</Text>
-              <Text style={styles.infoValue}>{brand.city.name}</Text>
-            </View>
-          </View>
+          // In BrandDetailScreen.tsx, update only the headquarters section:
+<View style={styles.infoRow}>
+  <View style={styles.infoItem}>
+    <Text style={styles.infoLabel}>Headquarters</Text>
+    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <Text style={[styles.infoValue, { marginRight: 3 }]}>{brand.city.name}</Text>
+      <TouchableOpacity onPress={() => setIsMapVisible(true)}>
+        <MaterialIcons name="location-on" size={24} color="#007AFF" />
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
         </View>
 
         <View style={styles.modelsSection}>
@@ -161,8 +171,15 @@ const BrandDetail = () => {
         isVisible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
         brandId={parseInt(id)}
+        
         onSuccess={handleModelCreated}
       />
+
+    <MapModal
+      isVisible={isMapVisible}
+      onClose={() => setIsMapVisible(false)}
+      location={brand.city}
+    />
     </SafeAreaView>
   );
 };
