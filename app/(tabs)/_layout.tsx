@@ -20,9 +20,12 @@ export default function TabsLayout() {
           backgroundColor: 'black',
           borderTopColor: 'black',
           borderTopWidth: 1,
+          
         },
-        tabBarActiveTintColor: '#007AFF',
+        tabBarAllowFontScaling: true,
+        tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: '#718096',
+        
       }}
     >
       <Tabs.Screen
@@ -33,7 +36,7 @@ export default function TabsLayout() {
           title: "Home",
           tabBarLabel: "Brands",
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="car" size={size} color={'white'} />
+            <MaterialCommunityIcons name="car" size={size} color={color} />
           ),
         }}
       />
@@ -43,7 +46,7 @@ export default function TabsLayout() {
           title: "Liked List",
           tabBarLabel: "Liked",
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="heart" size={size} color={"white"}  />
+            <MaterialCommunityIcons name="heart" size={size} color={color}  />
           ),
         }}
       />

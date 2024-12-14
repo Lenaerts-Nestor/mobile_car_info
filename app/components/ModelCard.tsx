@@ -82,7 +82,7 @@ const ModelCard = ({
               });
 
               if (response.ok) {
-                // Remove from liked models if present
+               
                 const likedModelsString = await AsyncStorage.getItem('likedModels');
                 if (likedModelsString) {
                   const likedModels: CarModel[] = JSON.parse(likedModelsString);
@@ -120,8 +120,9 @@ const ModelCard = ({
               >
                 <FontAwesome5 
                   name="heart"
+                  
                   size={24} 
-                  color={isLiked ? "#007AFF" : "#718096"}
+                  color={isLiked ? "#FF0080" : "gray"}
                   solid={isLiked}
                 />
               </TouchableOpacity>
@@ -169,10 +170,10 @@ const ModelCard = ({
 
           <View style={styles.modelActions}>
             <TouchableOpacity onPress={() => setIsUpdateModalVisible(true)}>
-              <MaterialIcons name="edit" size={24} color="#007AFF" />
+              <MaterialIcons name="edit" size={24} color="orange" />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleDelete}>
-              <MaterialIcons name="delete" size={24} color="#FF3B30" />
+              <MaterialIcons name="delete" size={24} color="#8b0000" />
             </TouchableOpacity>
           </View>
         </View>
