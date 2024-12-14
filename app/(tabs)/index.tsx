@@ -4,7 +4,7 @@ import HomeScreen from "../view/HomeScreen";
 
 const Index = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 ,}}>
     <HomeScreen />
   </View>
   );

@@ -6,15 +6,16 @@ const { width } = Dimensions.get('window');
   // Main container styles
   safeArea: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#000000',
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#000000',
   },
   
+ 
   // Header styles
   header: {
     backgroundColor: '#fff',
@@ -56,19 +57,20 @@ const { width } = Dimensions.get('window');
     gap: 16,
   },
   sectionHeader: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'black',
     padding: 12,
     borderWidth: 1,
     borderRadius: 16,
+    marginTop:5,
     marginHorizontal: 16,
     borderColor: "black",
     borderBottomColor: '#edf2f7',
   },
   sectionHeaderText: {
-    fontSize: 16,
+    fontSize: 26,
     textAlign:"center",
     fontWeight: '600',
-    color: 'black',
+    color: 'white',
   
   },
   listFooter: {
@@ -91,7 +93,10 @@ const { width } = Dimensions.get('window');
   card: {
     padding: 20,
     borderRadius: 16,
+    marginTop: 16,
     backgroundColor: '#fff',
+    borderColor: 'black',
+    borderWidth: 1,
     overflow: 'hidden',
   },
   cardContent: {
@@ -257,9 +262,13 @@ const { width } = Dimensions.get('window');
   // Model Card styles
   modelCard: {
     backgroundColor: '#fff',
-    borderRadius: 0,
+    borderRadius: 24,
+    borderColor: 'black',
+    borderWidth: 1,
+    
     padding: 16,
     marginBottom: 16,
+    marginTop: 16,
    
   },
   modelHeader: {

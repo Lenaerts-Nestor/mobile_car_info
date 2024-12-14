@@ -7,15 +7,18 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: 'black',
         },
-        headerTintColor: '#1a202c',
+        headerTintColor: 'white',
+        headerTitleAlign: "center",
+        
         headerTitleStyle: {
           fontWeight: '700',
+          fontSize: 30,
         },
         tabBarStyle: {
-          backgroundColor: '#fff',
-          borderTopColor: '#edf2f7',
+          backgroundColor: 'black',
+          borderTopColor: 'black',
           borderTopWidth: 1,
         },
         tabBarActiveTintColor: '#007AFF',
@@ -23,13 +26,14 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
+        
         name="index"
         options={{
           href: '/',
           title: "Car Brands",
           tabBarLabel: "Brands",
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="car" size={size} color={color} />
+            <MaterialCommunityIcons name="car" size={size} color={'white'} />
           ),
         }}
       />
@@ -39,7 +43,7 @@ export default function TabsLayout() {
           title: "Liked Models",
           tabBarLabel: "Liked",
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="heart" size={size} color={color} />
+            <MaterialCommunityIcons name="heart" size={size} color={"white"} />
           ),
         }}
       />
