@@ -104,7 +104,7 @@ const BrandDetail = () => {
             style={styles.websiteButton}
             onPress={handleWebsitePress}
           >
-            <MaterialIcons name="public" size={24} color="#007AFF" />
+            <MaterialIcons name="public" size={24} color="blue" />
             <Text style={styles.websiteButtonText}>Visit Website</Text>
           </TouchableOpacity>
         </View>
@@ -141,7 +141,7 @@ const BrandDetail = () => {
               style={styles.addModelButton}
               onPress={() => setIsModalVisible(true)}
             >
-              <AntDesign name="plus" size={24} color="#fff" />
+              <AntDesign name="plus" size={24} color="black" />
             </TouchableOpacity>
           </View>
           

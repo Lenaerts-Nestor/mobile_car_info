@@ -255,7 +255,7 @@ const { width } = Dimensions.get('window');
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#2d3748',
+    color: 'white',
     marginBottom: 16,
   },
   
@@ -333,7 +333,7 @@ const { width } = Dimensions.get('window');
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#007AFF',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
@@ -409,10 +409,10 @@ const { width } = Dimensions.get('window');
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#718096',
+    backgroundColor: 'red',
   },
   createButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: 'green',
   },
   disabledButton: {
     opacity: 0.5,
@@ -422,5 +422,19 @@ const { width } = Dimensions.get('window');
     fontSize: 16,
     fontWeight: '600',
   },
-  
+  updateButton: {
+    backgroundColor: '#007AFF',
+  },
+
+  // For dark theme
+modelActions: {
+  flexDirection: 'row',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  gap: 16,
+  marginTop: 12,
+  paddingTop: 12,
+  borderTopWidth: 1,
+  borderTopColor: '#FFFFFF', // Adjusted for dark theme
+},
 });

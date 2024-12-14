@@ -30,7 +30,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           href: '/',
-          title: "Car Brands",
+          title: "Home",
           tabBarLabel: "Brands",
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="car" size={size} color={'white'} />
@@ -40,10 +40,10 @@ export default function TabsLayout() {
      <Tabs.Screen
         name="liked"
         options={{
-          title: "Liked Models",
+          title: "Liked List",
           tabBarLabel: "Liked",
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="heart" size={size} color={"white"} />
+            <MaterialCommunityIcons name="heart" size={size} color={"white"}  />
           ),
         }}
       />

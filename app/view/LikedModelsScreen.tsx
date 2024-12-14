@@ -20,7 +20,7 @@ const LikedModels = () => {
         setLikedModels([]);
       }
     } catch (error) {
-      console.error('Error loading liked models:', error);
+      console.error('Error, oets met loading liked models:', error);
     } finally {
       setRefreshing(false);
     }
@@ -43,7 +43,7 @@ const LikedModels = () => {
     try {
       await AsyncStorage.setItem('likedModels', JSON.stringify(updatedModels));
     } catch (error) {
-      console.error('Error updating liked models:', error);
+      console.error('Error bij het updating liked models:', error);
     }
   };
 
