@@ -4,7 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import "../global.css";
 import React, { useEffect } from 'react';
 import * as Notifications from 'expo-notifications';
-import { registerForPushNotificationsAsync } from './utils/notifications';
+import { registerForPushNotificationsAsync } from '../utils/notifications';
 
 const RootLayout = () => {
   useEffect(() => {

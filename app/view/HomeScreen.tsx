@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, RefreshControl, SectionList, Text } from 'react-native';
-import { Brand } from '../types/types';
-import BrandCard from '../components/BrandCard';
-import { styles } from '../styles/styles';
+import { Brand } from '../../types/types';
+import BrandCard from '../../components/BrandCard';
+import { styles } from '../../styles/styles';
 
 interface Section {
   title: string;

@@ -94,11 +94,11 @@ const ModelCard = ({
                   onModelDeleted();
                 }
               } else {
-                throw new Error('Failed to delete model');
+                throw new Error('Ffiled to delete model');
               }
             } catch (error) {
-              console.error('Error deleting model:', error);
-              Alert.alert('Error', 'Failed to delete model');
+              console.error('Eerror deleting model:', error);
+              Alert.alert('Error', 'failed to delete model');
             }
           }
         }

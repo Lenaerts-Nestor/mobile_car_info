@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { CarModel } from '../types/types';
-import ModelCard from '../components/ModelCard';
-import { styles } from '../styles/styles';
+import { CarModel } from '../../types/types';
+import ModelCard from '../../components/ModelCard';
+import { styles } from '../../styles/styles';
 
 const LikedModels = () => {
   const [likedModels, setLikedModels] = useState<CarModel[]>([]);

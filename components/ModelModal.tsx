@@ -18,7 +18,7 @@ interface AddModelModalProps {
   isVisible: boolean;
   onClose: () => void;
   brandId: number;
-  onSuccess: () => void;
+  onSuccess: () => void;  
 }
 
 const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModalProps) => {
@@ -128,7 +128,7 @@ const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModal
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={formData.type}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}
+                  onValueChange={(value: any) => setFormData(prev => ({ ...prev, type: value }))}
                 >
                   {types.map(type => (
                     <Picker.Item key={type} label={type} value={type} />
@@ -153,7 +153,7 @@ const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModal
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={formData.fuel_type}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, fuel_type: value }))}
+                  onValueChange={(value: any) => setFormData(prev => ({ ...prev, fuel_type: value }))}
                 >
                   {fuelTypes.map(type => (
                     <Picker.Item key={type} label={type} value={type} />
@@ -200,7 +200,7 @@ const AddModelModal = ({ isVisible, onClose, brandId, onSuccess }: AddModelModal
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={formData.transmission}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, transmission: value }))}
+                  onValueChange={(value: any) => setFormData(prev => ({ ...prev, transmission: value }))}
                 >
                   {transmissions.map(type => (
                     <Picker.Item key={type} label={type} value={type} />

@@ -3,7 +3,6 @@ import { StyleSheet, Platform, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
  export const styles = StyleSheet.create({
-  // Main container styles
   safeArea: {
     flex: 1,
     backgroundColor: '#000000',
@@ -15,8 +14,6 @@ const { width } = Dimensions.get('window');
     backgroundColor: '#000000',
   },
   
- 
-  // Header styles
   header: {
     backgroundColor: '#fff',
     borderBottomWidth: 1,
@@ -46,8 +43,6 @@ const { width } = Dimensions.get('window');
     fontWeight: '700',
     color: '#1a202c',
   },
-
-  // Scroll and List styles
   scrollContent: {
     paddingTop: 10,
     paddingBottom: 20,
@@ -82,7 +77,6 @@ const { width } = Dimensions.get('window');
     fontSize: 14,
   },
 
-  // Brand Card styles
   cardWrapper: {
     borderRadius: 16,
     backgroundColor: '#fff',
@@ -149,7 +143,6 @@ const { width } = Dimensions.get('window');
     marginTop: 8,
   },
 
-  // Back button style
   backButton: {
     position: 'absolute',
     top: 16,
@@ -174,7 +167,6 @@ const { width } = Dimensions.get('window');
     }),
   },
 
-  // Brand Detail styles
   container: {
     flex: 1,
     backgroundColor: '#f8f9fa',
@@ -248,7 +240,6 @@ const { width } = Dimensions.get('window');
     fontWeight: '500',
   },
   
-  // Models Section styles
   modelsSection: {
     padding: 16,
   },
@@ -259,7 +250,6 @@ const { width } = Dimensions.get('window');
     marginBottom: 16,
   },
   
-  // Model Card styles
   modelCard: {
     backgroundColor: '#fff',
     borderRadius: 24,
@@ -445,5 +435,33 @@ locationContainer: {
 mapIconButton: {
   marginLeft: 8,
   padding: 4,
+},
+
+MapmodalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+},
+MapmodalContent: {
+  width: '90%',
+  height: '70%',
+  backgroundColor: 'white',
+  borderRadius: 20,
+  overflow: 'hidden',
+  position: 'relative',
+},
+map: {
+  width: '100%',
+  height: '100%',
+},
+closeButton: {
+  position: 'absolute',
+  top: 10,
+  right: 10,
+  zIndex: 1,
+  backgroundColor: 'white',
+  borderRadius: 20,
+  padding: 8,
 },
 });

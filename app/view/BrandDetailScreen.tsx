@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
-import { Brand, CarModel } from '../types/types';
-import ModelCard from '../components/ModelCard';
-import AddModelModal from '../components/ModelModal';
-import { styles } from '../styles/styles';
+import { Brand, CarModel } from '../../types/types';
+import ModelCard from '../../components/ModelCard';
+import AddModelModal from '../../components/ModelModal';
+import { styles } from '../../styles/styles';
 
-import MapModal from '../components/MapModal';
+import MapModal from '../../components/MapModal';
 const BrandDetail = () => {
   
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -51,7 +51,7 @@ const BrandDetail = () => {
       setBrand(brandData);
       setModels(modelsData);
     } catch (error) {
-      console.error('Error loading brand details:', error);
+      console.error('Error bij het  loading van brand details:', error);
      
     } finally {
       setLoading(false);
@@ -71,7 +71,7 @@ const BrandDetail = () => {
       try {
         await Linking.openURL(brand.website);
       } catch (error) {
-        Alert.alert('Error', 'Could not open website');
+        Alert.alert('Error, website link error');
       }
     }
   };
@@ -124,18 +124,17 @@ const BrandDetail = () => {
               <Text style={styles.infoValue}>{brand.country}</Text>
             </View>
           </View>
-          // In BrandDetailScreen.tsx, update only the headquarters section:
-<View style={styles.infoRow}>
-  <View style={styles.infoItem}>
-    <Text style={styles.infoLabel}>Headquarters</Text>
-    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-      <Text style={[styles.infoValue, { marginRight: 3 }]}>{brand.city.name}</Text>
-      <TouchableOpacity onPress={() => setIsMapVisible(true)}>
-        <MaterialIcons name="location-on" size={24} color="#007AFF" />
-      </TouchableOpacity>
-    </View>
-  </View>
-</View>
+            <View style={styles.infoRow}>
+            <View style={styles.infoItem}>
+                <Text style={styles.infoLabel}>Headquarters</Text>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={[styles.infoValue, { marginRight: 3 }]}>{brand.city.name}</Text>
+                <TouchableOpacity onPress={() => setIsMapVisible(true)}>
+                    <MaterialIcons name="location-on" size={24} color="#007AFF" />
+                </TouchableOpacity>
+                </View>
+            </View>
+            </View>
         </View>
 
         <View style={styles.modelsSection}>
@@ -161,7 +160,7 @@ const BrandDetail = () => {
             ))
           ) : (
             <View style={styles.emptyState}>
-              <Text style={styles.emptyStateText}>No models available</Text>
+              <Text style={styles.emptyStateText}>No models available, add some :D</Text>
             </View>
           )}
         </View>
